@@ -1,5 +1,38 @@
 {
+    // Configurações do Visual Studio Code para o projeto
     "python.analysis.extraPaths": [
         "./tests/test_"
+    ],
+    // Configurações de linting e formatação
+    "files.exclude": {
+        "**/.venv": true, // Esconde a pasta do ambiente virtual
+        "**/.github": true, // Esconde a pasta das configurações do GitHub Actions
+        "**/.vscode": true, // Esconde a pasta das configurações do VS Code (deste projeto)
+        "**/.DS_Store": true // (Opcional, para usuários macOS) Esconde arquivos de metadados
+    },
+    "search.exclude": {
+        "**/.venv": true, // (Opcional) Também exclui do resultado de buscas
+        "**/.github": true,
+        "**/.vscode": true
+    },
+    // --- Configurações de Formatação (Black) ---
+    "editor.defaultFormatter": "ms-python.black-formatter", // Define o Black como formatador padrão
+    "editor.formatOnSave": true, // Formata o arquivo automaticamente ao salvar
+    "black-formatter.args": [
+        "--line-length",
+        "88"
+    ],
+    // --- Configurações de Linting e Type-checking (Pylint e Mypy) ---
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0114,C0115,C0116", // Desabilita avisos de docstrings ausentes para arquivos e classes
+        "--good-names=i,j,k,e,x", // Permite nomes de variáveis curtos para loops e exceções
+        "--max-line-length=88"
+    ],
+    "python.analysis.typeCheckingMode": "basic", // Habilita verificação de tipos básica do Pylance
+    "mypy-type-checker.args": [
+        "--ignore-missing-imports" // Ignora avisos de pacotes que não têm stubs de tipos
     ]
 }
